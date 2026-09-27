@@ -775,7 +775,7 @@ where
 
 impl rwh::HasWindowHandle for WaylandWindow {
     fn window_handle(&self) -> Result<rwh::WindowHandle<'_>, rwh::HandleError> {
-        let surface = self.0.surface().id().as_ptr() as *mut libc::c_void;
+        let surface = self.0.surface().id().as_ptr() as *mut std::ffi::c_void;
         let c_ptr = NonNull::new(surface).ok_or(rwh::HandleError::Unavailable)?;
         let handle = rwh::WaylandWindowHandle::new(c_ptr);
         let raw_handle = rwh::RawWindowHandle::Wayland(handle);
@@ -791,7 +791,7 @@ impl rwh::HasDisplayHandle for WaylandWindow {
             .backend()
             .upgrade()
             .ok_or(rwh::HandleError::Unavailable)?
-            .display_ptr() as *mut libc::c_void;
+            .display_ptr() as *mut std::ffi::c_void;
 
         let c_ptr = NonNull::new(display).ok_or(rwh::HandleError::Unavailable)?;
         let handle = rwh::WaylandDisplayHandle::new(c_ptr);

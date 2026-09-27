@@ -39,7 +39,6 @@ default = [
     "font-kit",
     "wayland",
     "x11",
-    "windows-manifest",
 ]
 inspector = ["gpui_macros/inspector"]
 leak-detection = ["backtrace"]
@@ -305,9 +304,6 @@ version = "0.3.19"
 
 [dependencies.itertools]
 version = "0.14.0"
-
-[dependencies.libc]
-version = "0.2"
 
 [dependencies.log]
 version = "0.4.16"
@@ -743,8 +739,9 @@ version = "0.2"
 [target.'cfg(target_os = "windows")'.dependencies.windows-registry]
 version = "0.5"
 
-[target.'cfg(target_os = "windows")'.build-dependencies.embed-resource]
-version = "3.0"
+# windows-manifest used to compile a manifest with embed-resource (cc, vswhom, libc).
+# The feature remains, but the build dependency is gone so a default build does not.
+
 
 [lints.clippy]
 dbg_macro = "deny"

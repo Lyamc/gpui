@@ -132,6 +132,7 @@ impl Application {
     pub fn new() -> Self {
         #[cfg(any(test, feature = "test-support"))]
         log::info!("GPUI was compiled in test mode");
+        http_client::install_tls_provider();
 
         Self(App::new_app(
             current_platform(false),
@@ -144,6 +145,7 @@ impl Application {
     /// but makes it possible to run an application in an context like
     /// SSH, where GUI applications are not allowed.
     pub fn headless() -> Self {
+        http_client::install_tls_provider();
         Self(App::new_app(
             current_platform(true),
             Arc::new(()),
