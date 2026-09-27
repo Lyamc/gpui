@@ -1,5 +1,7 @@
 # Welcome to GPUI!
 
+This is a fork of GPUI 0.2.2, published from the Zed tree, kept for [cabin](https://github.com/Lyamc/cabin). Upstream GPUI depends on `image` with its default features. That set includes AVIF, and AVIF is what pulls `rav1e` and, through it, the `libc` crate. Cabin does not decode AVIF, so this fork asks `image` for the rest of that default set (PNG, JPEG, GIF, WebP, TIFF, and the others, plus `rayon`) and leaves `avif` off. Every other GPUI behavior is unchanged. AVIF files passed to an `img` element will not decode.
+
 GPUI is a hybrid immediate and retained mode, GPU accelerated, UI framework
 for Rust, designed to support a wide variety of applications.
 
