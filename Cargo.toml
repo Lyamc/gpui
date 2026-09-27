@@ -277,11 +277,13 @@ package = "gpui-macros"
 version = "0.2.2"
 package = "gpui_http_client"
 
-# Same formats as image's default set, without avif (that feature pulls rav1e).
+# image's default formats, including avif. rav1e comes from Lyamc/rav1e,
+# which does not depend on cc or libc.
 [dependencies.image]
 version = "0.25.1"
 default-features = false
 features = [
+    "avif",
     "bmp",
     "dds",
     "exr",
